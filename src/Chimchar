@@ -14,7 +14,7 @@ public Chimchar()
 		setHP(newhp);
 	}
 	
-	public void attackTwo(pokemon target)
+	public void attackTwo(PokemonInheritance unfortunatePokemon)
 	{
 		
 	}
