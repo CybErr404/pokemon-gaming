@@ -7,7 +7,7 @@ public Chimchar()
 		setHP(50);
 	}
 	
-	public void attackOne(pokemon target)
+	public void attackOne(PokemonInheritance unfortunatePokemon)
 	{
 		int currenthp= target.getHP();
 		int newhp= currenthp-10;
