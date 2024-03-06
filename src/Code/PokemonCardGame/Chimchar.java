@@ -1,4 +1,4 @@
-package PokemonCardGame;
+package Code.PokemonCardGame;
 
 // Chimchar class added by Garret Chmielewski during GitHub classmate editing assignment.
 // This code was written by Garret!

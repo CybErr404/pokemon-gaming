@@ -1,4 +1,4 @@
-package PokemonCardGame;//60, there's a catch, in order to take a turn you needed to have a basic pokemon card in your hand.
+package Code.PokemonCardGame;//60, there's a catch, in order to take a turn you needed to have a basic pokemon card in your hand.
 
 //Let's write a Monte Carlo simulation. That means, using raw, brute force, to try to figure out something interesting.
 

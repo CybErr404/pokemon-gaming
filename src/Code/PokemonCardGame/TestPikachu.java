@@ -1,4 +1,4 @@
-package PokemonCardGame;
+package Code.PokemonCardGame;
 
 public class TestPikachu {
     public static void main(String[] args) {

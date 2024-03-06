@@ -1,4 +1,4 @@
-package PokemonCardGame;
+package Code.PokemonCardGame;
 
 public class Pikachu extends PokemonInheritance implements Attackable {
     private int hp;
