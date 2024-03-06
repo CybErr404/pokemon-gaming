@@ -1,14 +1,8 @@
-package StatsLibrary;
+package Code.StatsLibrary;
 
 import java.util.ArrayList;
 public class TestSetOperations
 {
-    //QUESTIONS TO ASK:
-    //1. How do we complete the union? Issue - we can't get union to work because there are separate
-    //sizes associated with arrays that cause problems when running the union. If one array is bigger
-    //than the other, there's an out-of-bounds exception thrown.
-    //2. How do we complete the complement? Issue - what exactly is the bound? Are we going to have to
-    //make a new bound every time we need to use complement? What is the bound? How big is the bound?
     public static void main(String[] args) {
         SetOperations setTest = new SetOperations();
 

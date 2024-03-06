@@ -1,4 +1,4 @@
-package StatsLibrary;
+package Code.StatsLibrary;
 
 import java.util.ArrayList;
 public class SetOperations
