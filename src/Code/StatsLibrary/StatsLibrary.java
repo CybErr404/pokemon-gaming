@@ -1,6 +1,7 @@
 package Code.StatsLibrary;
 
 //Import statement for the arrays class.
+import java.math.BigInteger;
 import java.util.Arrays;
 //Import statement for the TreeMaps used within the mode method.
 import java.util.TreeMap;
@@ -26,12 +27,11 @@ public class StatsLibrary {
 
         //Find the sum.
         double sum = 0;
-        for(int i = 0; i < userInput.length; i++) {
-            sum = userInput[i] + sum; //or +=, either works.
+        for (int j : userInput) {
+            sum = j + sum; //or +=, either works.
         }
-        double result = sum / userInput.length;
 
-        return result;
+        return sum / userInput.length;
     }
 
     //Median = the middle of the list of numbers (exact middle if odd, average of left and right middle if even).
@@ -55,8 +55,15 @@ public class StatsLibrary {
     //Mode = finding the most common number in a list.
     public double findMode(int[] userArray) {
         TreeMap<Integer, Integer> modeTreeMap = new TreeMap<>();
-
-        return 0;
+        for(int i = 0; i < userArray.length; i++) {
+            modeTreeMap.put(userArray[i], i);
+        }
+        for(int i = 0; i < userArray.length; i++) {
+            if(modeTreeMap.containsKey(userArray[i])) {
+                modeTreeMap.put(userArray[i], i + 1);
+            }
+        }
+        return modeTreeMap.values().stream().max(Integer::compare).get();
     }
 
     public double findVariance(int[] array) {
@@ -67,14 +74,14 @@ public class StatsLibrary {
         double mean = 0.0; //mean is the sum of all array elements divided by how many elements there are. (average but not).
         double variance = 0.0; //variance is the variable that is returned that will contain the variance value.
 
-        for(int i = 0; i < array.length; i++) {
-            sum = sum + array[i];
+        for (int k : array) {
+            sum = sum + k;
         }
 
         mean = findMean(array);
 
-        for(int i = 0; i < array.length; i++) {
-            side2 = side2 + Math.pow(array[i] - mean, 2);
+        for (int j : array) {
+            side2 = side2 + Math.pow(j - mean, 2);
         }
 
         variance  = (side1 * side2);
@@ -85,5 +92,150 @@ public class StatsLibrary {
         double standardDeviation = 0.0;
         standardDeviation = Math.sqrt(findVariance(array));
         return standardDeviation;
+    }
+
+    public double mxnRule(double m, double n) {
+        return m * n;
+    }
+
+    public long longFactorial(double number) {
+        long result = 1;
+        for(int i = (int) number; i > 0; i--) {
+            result = result * i;
+        }
+        return result;
+    }
+
+    public BigInteger bigIntegerFactorial(int number) {
+        BigInteger result = BigInteger.ONE;
+        for(int i = 1; i <= number; i++) {
+            result = result.multiply(BigInteger.valueOf(i));
+        }
+        return result;
+    }
+
+    public BigInteger permutations(int n, int r) {
+        return ((bigIntegerFactorial(n)).divide(bigIntegerFactorial(n - r)));
+    }
+
+    public BigInteger combinations(int n, int r) {
+        BigInteger numerator = (bigIntegerFactorial(n));
+        BigInteger denominator = (bigIntegerFactorial(r)).multiply((bigIntegerFactorial(n - r)));
+        return numerator.divide(denominator);
+    }
+
+    public long combinationsLong(int n, int r) {
+        double numerator = longFactorial(n);
+        double denominator = longFactorial(r) * longFactorial(n - r);
+        return (long) (numerator / denominator);
+    }
+
+    public double conditionalProbability1(double b, double aIntersectionB) {
+        if(b == 0) {
+            return 0.00;
+        }
+        return (aIntersectionB / b);
+    }
+
+    public double conditionalProbability2(double a, double aIntersectionB) {
+        if(a == 0) {
+            return 0.00;
+        }
+        return (aIntersectionB / a);
+    }
+
+    public boolean independenceChecker(double aGivenB, double bGivenA, double a, double b,
+                                       double aIntersectionB) {
+        return aGivenB == a || bGivenA == b || aIntersectionB == (a * b);
+    }
+
+    public double multiplicativeLawOfProbability1(double a, double bGivenA) {
+        return a * bGivenA;
+    }
+
+    public double multiplicativeLawOfProbability2(double a, double aGivenB) {
+        return a * aGivenB;
+    }
+
+    public double multiplicativeLawOfProbability3(double a, double b) {
+        return a * b;
+    }
+
+    public double additiveLawOfProbability1(double a, double b, double aIntersectionB) {
+        return a + b - aIntersectionB;
+    }
+
+    public double additiveLawOfProbability2(double a, double b) {
+        return a + b;
+    }
+
+    public double oddsOfSomethingNotHappening(double aBar) {
+        return 1.0 - aBar;
+    }
+
+    public double binomialDistributionPMF(double p, double q, int n, int y) {
+        return (combinationsLong(n, y)) * (Math.pow(p, y)) * (Math.pow(q, (n - y)));
+    }
+
+    public double expectedValueBDPMF(double n, double p) {
+        return n * p;
+    }
+
+    public double varianceValueBDPMF(double n, double p, double q) {
+        return n * p * q;
+    }
+
+    public double standardDeviationValueBDPMF(double n, double p, double q) {
+        return Math.sqrt(varianceValueBDPMF(n, p, q));
+    }
+
+    public double geometricDistributionPMF(double p, double q, int y) {
+        return (Math.pow(q, (y - 1))) * p;
+    }
+
+    public double expectedValueGDPMF(double p) {
+        return 1 / p;
+    }
+
+    public double varianceValueGDPMF(double p) {
+        return (1 - p)/(Math.pow(p, 2));
+    }
+
+    public double standardDeviationValueGDPMF(double p) {
+        return Math.sqrt(varianceValueGDPMF(p));
+    }
+
+    public long hypergeometricDistributionPMF(int r, int y, int N, int n) {
+        return ((combinationsLong(r, y)) * (combinationsLong(N - r, n - y))) /
+                (combinationsLong(N, n));
+    }
+
+    public double expectedValueHGDPMF(double n, double r, double N) {
+        return (n * r) / N;
+    }
+
+    public double varianceValueHGDPMF(double n, double r, double N) {
+        return n * (r / N) * ((N - r) / N) * ((N - n) / (N - 1));
+    }
+
+    public double standardDeviationValueHGDPMF(double n, double r, double N) {
+        return Math.sqrt(varianceValueHGDPMF(n, r, N));
+    }
+
+    public double negativeBinomialDistributionPMF(double p, double q, int  y, int r) {
+        double combination = combinationsLong(y - 1, r - 1);
+        return combination * (Math.pow(p, r)) * (Math.pow(q, y - r));
+    }
+
+    public double expectedValueNBDPMF(double p, int r) {
+        return r / p;
+    }
+
+    public double varianceValueNBDPMF(double p, int r) {
+        return (r * (1 - p)) / (Math.pow(p, 2));
+    }
+
+    public double standardDeviationValueNBDPMF(double p, int r) {
+        return Math.sqrt(varianceValueNBDPMF(p, r));
     }
 }

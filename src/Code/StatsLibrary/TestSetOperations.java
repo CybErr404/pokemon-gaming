@@ -1,38 +1,24 @@
 package Code.StatsLibrary;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 public class TestSetOperations
 {
     public static void main(String[] args) {
         SetOperations setTest = new SetOperations();
 
-        ArrayList<String> daysOfTheWeek1 = new ArrayList<>();
-        daysOfTheWeek1.add("Monday");
-        daysOfTheWeek1.add("Tuesday");
-        daysOfTheWeek1.add("Wednesday");
-        daysOfTheWeek1.add("Thursday");
-        daysOfTheWeek1.add("Friday");
+        ArrayList<Integer> numbers1 = new ArrayList<>(Arrays.asList(2, 3, 4, 5));
+        ArrayList<Integer> numbers2 = new ArrayList<>(Arrays.asList(2, 3, 6, 7));
+        ArrayList<Integer> bound = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
 
-        ArrayList<String> daysOfTheWeek2 = new ArrayList<>();
-        daysOfTheWeek2.add("Monday");
-        daysOfTheWeek2.add("Tuesday");
-        daysOfTheWeek2.add("Saturday");
-        daysOfTheWeek2.add("Sunday");
-
-        ArrayList<String> totalDays = new ArrayList<>();
-        daysOfTheWeek2.add("Monday");
-        daysOfTheWeek2.add("Tuesday");
-        daysOfTheWeek2.add("Wednesday");
-        daysOfTheWeek2.add("Thursday");
-        daysOfTheWeek2.add("Friday");
-        daysOfTheWeek2.add("Saturday");
-        daysOfTheWeek2.add("Sunday");
-
-        //String storeUnionResult = setTest.setUnion(daysOfTheWeek1, daysOfTheWeek2);
-        //System.out.println(storeUnionResult);
-        //String storeIntersectionResult = setTest.setIntersection(daysOfTheWeek1, daysOfTheWeek2);
-        //System.out.println(storeIntersectionResult);
-        String storeComplementResult = setTest.setComplement(daysOfTheWeek1, totalDays);
-        System.out.println(storeComplementResult);
+        String storeUnionResult = setTest.setUnion(numbers1, numbers2);
+        System.out.println("The union is: " + storeUnionResult);
+        String storeIntersectionResult = setTest.setIntersection(numbers1, numbers2);
+        System.out.println("The intersection is: " + storeIntersectionResult);
+        String storeComplementResult1 = setTest.setComplement(numbers1, bound);
+        System.out.println("The complement is: " + storeComplementResult1);
+        String storeComplementResult2 = setTest.setComplement(numbers2, bound);
+        System.out.println("The complement is: " + storeComplementResult2);
     }
 }
