@@ -10,7 +10,7 @@ project of the spring 2024 semester.
 Garret Chmielewski
 
 
-**NAVIGATION**
+**NAVIGATION** Go through the src folder to find everything!
 
 **CODE -**
 Contains code from the Pokemon project, the Stats Library, and the Set Operations library.
