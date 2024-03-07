@@ -6,5 +6,7 @@ public class TestPokemonCardGame {
         PokemonCardGame test = new PokemonCardGame();
         //test.runAgain();
         test.run(100.00);
+
+        System.out.println(test.getDeck().toString());
     }
 }
