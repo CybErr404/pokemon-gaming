@@ -164,7 +164,26 @@ public class TestStatsLibrary {
         //the complement.
         double oddsOfSomethingNotHappening = test.oddsOfSomethingNotHappening(.55);
         //Prints the result of the complement.
-        System.out.println("The result of calculating the complement of a value is: " + oddsOfSomethingNotHappening + "\n");
+        System.out.println("The result of calculating the complement of a value is: " + oddsOfSomethingNotHappening
+                + "\n");
+
+        //TESTING THEOREM OF TOTAL PROBABILITY...
+        System.out.println("THEOREM OF TOTAL PROBABILITY");
+        //Stores the value gotten from the theorem of total probability into a double.
+        double theoremOfTotalProbResults = test.theoremOfTotalProbability(0.27, 0.75, 0.25, 0.62);
+        System.out.println("The result for the theorem of total probability is: " + theoremOfTotalProbResults + "\n");
+
+        //TESTING BAYES THEOREM...
+        System.out.println("BAYES THEOREM");
+        //Stores the value obtained from running the Bayes Theorem method.
+        double bayesTheoremResults = test.bayesTheorem(0.1667, 0.5, 0.33);
+        System.out.println("The result for Bayes is: " + bayesTheoremResults + "\n");
+
+        //TESTING COMBINATORIAL PMF...
+        System.out.println("COMBINATORIAL PMF");
+        //Stores the combinatorial analysis results in a double variable.
+        double combinatorialPMFResults = test.combinatorialPMF(12, 7, 5, 3, 4);
+        System.out.println("The result for combinatorial analysis is: " + combinatorialPMFResults + "\n");
 
         //TESTING BINOMIAL DISTRIBUTION...
         System.out.println("BINOMIAL DISTRIBUTION");

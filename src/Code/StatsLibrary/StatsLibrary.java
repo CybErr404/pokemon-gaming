@@ -15,14 +15,23 @@ import java.util.TreeMap;
 //combinations, a factorial method using both Longs and BigInteger, conditional probability formulas
 //(both P(A|B) and P(B|A)), an independent and dependent checker, the Multiplicative Law of
 //Probability, the General Addition Rule Axiom, the odds of something not occurring,
-//the Theorem of Total Probability, Bayes Theorem, Combinatorial PMFs, the Binomial Distribution PMF,
+//the Theorem of Total Probability, Bayes Theorem, the combinatorial PMF, the Binomial Distribution PMF,
 //the expected value, variance, and standard deviation for binomial distribution, the Geometric
 //Distribution PMF, the expected value, variance, and standard deviation for geometric distribution,
 //the Hypergeometric Distribution PMF, the expected value, variance, and standard deviation for
 //hypergeometric distribution, the Negative Binomial Distribution PMF, and the expected value,
 //variance, and standard deviation for negative binomial distribution.
+
+/**
+ * @author Mia Watts
+ */
 public class StatsLibrary {
 
+    /**
+     *
+     * @param userInput - array that takes integer values
+     * @return the mean result, or the sum divided by the length of the array
+     */
     public double findMean(int[] userInput) {
 
         //Find the sum.
@@ -31,9 +40,16 @@ public class StatsLibrary {
             sum = j + sum; //or +=, either works.
         }
 
+        //returns the sum divided by the array length
         return sum / userInput.length;
     }
 
+    /**
+     *
+     * @param userArray - array parameter that has integer values
+     * @return median (middle value if odd array length and result of dividing two middle numbers
+     * after adding them together if even)
+     */
     //Median = the middle of the list of numbers (exact middle if odd, average of left and right middle if even).
     public double findMedian(int[] userArray) {
         //Sort the array from smallest to biggest.
@@ -52,6 +68,11 @@ public class StatsLibrary {
         }
     }
 
+    /**
+     *
+     * @param userArray - array of integer values
+     * @return the mode
+     */
     //Mode = finding the most common number in a list.
     public double findMode(int[] userArray) {
         TreeMap<Integer, Integer> modeTreeMap = new TreeMap<>();
@@ -171,6 +192,18 @@ public class StatsLibrary {
 
     public double oddsOfSomethingNotHappening(double aBar) {
         return 1.0 - aBar;
+    }
+
+    public double theoremOfTotalProbability(double aGivenB, double b, double bBar, double aGivenBBar) {
+        return (double) ((aGivenB) * (b)) / ((aGivenB) * (b)) + ((aGivenBBar) * (bBar));
+    }
+
+    public double bayesTheorem(double a, double b, double aGivenB) {
+        return ((aGivenB) * (b)) / a;
+    }
+
+    public double combinatorialPMF(int N, int nR, int nB, int y, int s) {
+        return (double) ((combinationsLong(nR, y)) * (combinationsLong(nB, (s - y)))) / (combinationsLong(N, s));
     }
 
     public double binomialDistributionPMF(double p, double q, int n, int y) {
