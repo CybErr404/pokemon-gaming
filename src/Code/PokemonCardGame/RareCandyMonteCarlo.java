@@ -1,6 +1,7 @@
 package Code.PokemonCardGame;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class RareCandyMonteCarlo {
@@ -79,7 +80,28 @@ public class RareCandyMonteCarlo {
         return drawnCard;
     }
 
-    //Jake Cubernot helped with this method!
+    //Jake Cubernot helped with this method! This is in progress.
+    public void run1() {
+        String[][] resultMatrix = new String[5][2];
+        resultMatrix[0][0] = "Number of Rare Candies in a Deck of 60";
+        resultMatrix[0][1] = "Chance (%) of Not Bricking";
+        int testCount = 1000000;
+        for (int i = 1; i <= 4; i++) {
+            int candyInPrizeCount = 0;
+            for (int j = 0; j < testCount; j++) {
+                RareCandyMonteCarlo testDeck = new RareCandyMonteCarlo();
+                testDeck.newDeckMultipleCandies(i);
+                if(!isCandyBricked(testDeck)) {
+                    candyInPrizeCount++;
+                }
+            }
+            double rareCandiesProbability = ((double) candyInPrizeCount / testCount) * 100.0;
+            resultMatrix[i][0] = String.valueOf(i);
+            resultMatrix[i][1] = rareCandiesProbability + "%";
+        }
+        System.out.println(Arrays.deepToString(resultMatrix));
+    }
+
     public void run(double userAmountRun) {
         for(int i = 1; i <= 4; i++) {
             int candyCount = 0;
@@ -101,5 +123,13 @@ public class RareCandyMonteCarlo {
             System.out.println("Percent chance of not getting a bricked deck: "
                     + (100 - (candyCount / userAmountRun)) + "%" + "\n");
         }
+    }
+
+    private boolean isCandyBricked(RareCandyMonteCarlo player) {
+        for (int i = 0; i < player.prizePile.size(); i++) {
+            if (player.prizePile.get(i) instanceof Trainer) {
+                return false;
+            }
+        } return true;
     }
 }

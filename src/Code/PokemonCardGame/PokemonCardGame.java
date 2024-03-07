@@ -20,7 +20,7 @@ public class PokemonCardGame {
     //A deck of cards!
     private ArrayList <Card> deck; //This is the constructor's job. = new Card[];
     private ArrayList <Card> hand;
-    private ArrayList <Card> prizePile;
+    ArrayList <Card> prizePile;
     private ArrayList <Card> discardPile;
     private ArrayList <Card> pokemonBench;
     private ArrayList <Card> activePokemon;
