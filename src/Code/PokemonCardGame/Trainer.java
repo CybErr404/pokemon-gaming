@@ -3,6 +3,7 @@ package Code.PokemonCardGame;
 import java.util.ArrayList;
 import java.util.Random;
 public class Trainer extends Card implements TrainerActions {
+    private int damage;
     private ArrayList <Card> hand;
     private ArrayList <Card> deck;
     private ArrayList <Card> bench;
@@ -13,6 +14,14 @@ public class Trainer extends Card implements TrainerActions {
         Card drawnCard = deck.get(cardIndex);
         deck.remove(cardIndex);
         return drawnCard;
+    }
+
+    public void setDamage(int userInputDamage) {
+        damage = userInputDamage;
+    }
+
+    public int getDamage() {
+        return damage;
     }
 
     public void drawHand() {

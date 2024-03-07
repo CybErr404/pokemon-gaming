@@ -39,7 +39,7 @@ public class RareCandyMonteCarlo {
         }
     }
 
-    public boolean evaulateOpeningHand() {
+    public boolean evaluateOpeningHand() {
         for(int i = 0; i < hand.size(); i++) {
             Card currentCard = hand.get(i);
             if(currentCard instanceof Pokemon) { //instanceof is asking "is the card of type Pokemon?"
@@ -86,9 +86,9 @@ public class RareCandyMonteCarlo {
                 newDeckMultipleCandies(i);
                 drawHand();
                 drawPrizePile();
-                if(evaulateOpeningHand()) {
+                if(evaluateOpeningHand()) {
                     continue;
-                } //else drawHand();
+                } else drawHand();
                 if(evaluatePrizePile()) {
                     candyCount = candyCount + 1;
                 }
@@ -97,6 +97,8 @@ public class RareCandyMonteCarlo {
             System.out.println("Number of prize piles with candies: " + (candyCount) +
                     ", percentage of prize piles with all candies: " +
                     (candyCount / userAmountRun) + "%");
+            System.out.println("Percent chance of not getting a bricked deck: "
+                    + (100 - (candyCount / userAmountRun)) + "%" + "\n");
         }
     }
 }

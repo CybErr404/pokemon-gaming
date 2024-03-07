@@ -2,6 +2,7 @@ package Code.PokemonCardGame;
 
 public class PokemonInheritance {
     private int hp;
+    private int damage;
     private String attackOneName;
     private String attackTwoName;
 

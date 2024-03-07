@@ -92,6 +92,10 @@ public class PokemonCardGame {
         return deck;
     }
 
+    public ArrayList<Card> getHand(){
+        return hand;
+    }
+
     public ArrayList<String> printDeck(ArrayList<Card> deck) {
         ArrayList<String> resultArray = new ArrayList<>();
         for (Card currentCard : deck) {
@@ -173,7 +177,7 @@ public class PokemonCardGame {
         }
     }
 
-    public boolean evaulateOpeningHand() {
+    public boolean evaluateOpeningHand() {
         //boolean havePokemon = false;
         for(int i = 0; i < hand.size(); i++) {
             Card currentCard = hand.get(i);
@@ -200,7 +204,7 @@ public class PokemonCardGame {
             for(int j = 1; j <= userAmountRun; j++) {
                 newDeckMultiplePokemon(i);
                 drawHand();
-                if(evaulateOpeningHand()) {
+                if(evaluateOpeningHand()) {
                     trueCount += 1;
                 }
             }
