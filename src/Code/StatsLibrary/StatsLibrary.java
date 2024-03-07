@@ -323,7 +323,7 @@ public class StatsLibrary {
      * bBar * bBar, or the result of the theorem of total probability
      */
     public double theoremOfTotalProbability(double aGivenB, double b, double bBar, double aGivenBBar) {
-        return (double) ((aGivenB) * (b)) / ((aGivenB) * (b)) + ((aGivenBBar) * (bBar));
+        return ((aGivenB) * (b)) / (((aGivenB) * (b)) + ((aGivenBBar) * (bBar)));
     }
 
     /**

@@ -1,6 +1,8 @@
 package Code.StatsLibrary;
 
+//Used for permutations and combinations along with some of the probability mass functions.
 import java.math.BigInteger;
+//Used for the arrays that contain values to be tested in some cases.
 import java.util.Arrays;
 
 /**

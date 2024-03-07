@@ -79,6 +79,7 @@ public class RareCandyMonteCarlo {
         return drawnCard;
     }
 
+    //Jake Cubernot helped with this method!
     public void run(double userAmountRun) {
         for(int i = 1; i <= 4; i++) {
             int candyCount = 0;
