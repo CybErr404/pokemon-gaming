@@ -19,3 +19,5 @@ The Chimchar code was added by Garret Chmielewski during our GitHub assignment i
 **WRITTEN WORKS -**
 This sections consists of documentation, including written paragraphs on all methods coded in the Stats Library, the Set Operation library, and the Pokemon card game.
 Also included is a GitHub essay on Git, workflow, merging, merge conflicts, commits, pushes, and pulls and a formula sheet.
+
+Hopefully you enjoy your stay! I hope to continue adding to this even when I don't have the class anymore.
