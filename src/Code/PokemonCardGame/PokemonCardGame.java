@@ -14,9 +14,7 @@ package Code.PokemonCardGame;//60, there's a catch, in order to take a turn you 
 //The result should be 60 data points that you can plot into Excel to determine the ideal Pokemon count
 //so that you can consistently draw a Pokemon in your first hand.
 import java.util.ArrayList;
-import java.util.*;
 import java.util.Random;
-import java.util.Collections;
 
 public class PokemonCardGame {
     //A deck of cards!
@@ -94,6 +92,42 @@ public class PokemonCardGame {
         return deck;
     }
 
+    public ArrayList<String> printDeck(ArrayList<Card> deck) {
+        ArrayList<String> resultArray = new ArrayList<>();
+        for (Card currentCard : deck) {
+            if (currentCard instanceof Pokemon) {
+                resultArray.add("Pokemon");
+            } else if (currentCard instanceof Trainer) {
+                resultArray.add("Trainer");
+            } else if (currentCard instanceof RareCandy) {
+                resultArray.add("Rare Candy");
+            } else {
+                resultArray.add("Energy");
+            }
+        }
+        return resultArray;
+    }
+
+    public ArrayList<String> printHand(ArrayList<Card> hand) {
+        ArrayList<String> resultArray = new ArrayList<>();
+        for (Card currentCard : hand) {
+            if (currentCard instanceof Pokemon) {
+                resultArray.add("Pokemon");
+            } else if (currentCard instanceof Trainer) {
+                resultArray.add("Trainer");
+            } else if (currentCard instanceof RareCandy) {
+                resultArray.add("Rare Candy");
+            } else {
+                resultArray.add("Energy");
+            }
+        }
+        return resultArray;
+    }
+
+    public String printInstructions() {
+        return "instructions will be made eventually!";
+    }
+
 
     public void newDeckOnePokemon() {
         deck.clear();
@@ -152,9 +186,7 @@ public class PokemonCardGame {
 
     //Make engine for program!
     public void run(double userAmountRun) {
-        //double trueCount = 0;
         int deckSize = 60;
-
         //IRRELEVANT CODE:
         //for(int i = 0; i <= userAmountRun; i++) {
         //newDeckOnePokemon();
@@ -163,7 +195,6 @@ public class PokemonCardGame {
         //trueCount =+ 1;
         //}
         //}
-
         for(int i = 1; i <= deckSize; i++) {
             double trueCount = 0;
             for(int j = 1; j <= userAmountRun; j++) {
@@ -173,12 +204,9 @@ public class PokemonCardGame {
                     trueCount += 1;
                 }
             }
-
             System.out.println("Number of hands with pokemon: "+ (trueCount) + ", percentage of hands with Pokemon: "
                     + (trueCount / userAmountRun) + "%");
-
         }
-
         //ORIGINAL CODE FROM BEFORE:
         //drawHand();
         //System.out.println("Has Pokemon: " + evaluateOpeningHand());

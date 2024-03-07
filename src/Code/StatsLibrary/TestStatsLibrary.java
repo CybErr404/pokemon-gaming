@@ -3,6 +3,10 @@ package Code.StatsLibrary;
 import java.math.BigInteger;
 import java.util.Arrays;
 
+/**
+ * @author Mia Watts
+ */
+
 //This class's purpose is to test all formulas and methods within the StatsLibrary class.
 //See the StatsLibrary class for a programmed collection of all statistics formulas
 //that have been covered in the course up to 3/7/2024.
@@ -28,19 +32,19 @@ public class TestStatsLibrary {
         //TESTING THE MODE METHOD...
         //Declares and initializes a variable called storeModeResults1 that stores
         //the result of taking the mode of an array with two repeating values of the same count.
-        double storeModeResults1 = test.findMode(numbersArray1);
+        double storeModeResults1 = Double.parseDouble(test.findMode(numbersArray1));
         //Declares and initializes a variable called storeModeResults2 that stores
         //the result of taking the mode of an array with no mode.
-        double storeModeResults2 = test.findMode(numbersArray2);
+        String storeModeResults2 = test.findMode(numbersArray2);
         //Declares and initializes a variable called storeModeResults3 that stores
         //the result of taking the mode of an array with one clear mode.
-        double storeModeResults3 = test.findMode(numbersArray3);
+        double storeModeResults3 = Double.parseDouble(test.findMode(numbersArray3));
         //Prints the mode of an array with two repeating values of the same count.
         System.out.println("The mode of an array with two repeating values is: " + storeModeResults1);
         //Prints the mode of an array with no mode.
         System.out.println("The mode of an array with no mode is: " + storeModeResults2);
         //Prints the mode of an array that has one clear mode.
-        System.out.println("The mean of an array with one mode is: " + storeModeResults3);
+        System.out.println("The mode of an array with one mode is: " + storeModeResults3);
 
         //TESTING THE MEDIAN METHOD...
         //Declares and initializes a variable called storeMedianResults1 that stores

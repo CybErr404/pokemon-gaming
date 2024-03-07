@@ -6,10 +6,12 @@ import java.util.Random;
 public class RareCandyMonteCarlo {
     private ArrayList<Card> deck;
     private ArrayList <Card> hand;
+    private ArrayList <Card> prizePile;
 
     public RareCandyMonteCarlo() {
         deck = new ArrayList<Card>();
         hand = new ArrayList<Card>();
+        prizePile = new ArrayList<Card>();
     }
 
     //add rare candy to prize pile as well.
@@ -40,7 +42,17 @@ public class RareCandyMonteCarlo {
     public boolean evaulateOpeningHand() {
         for(int i = 0; i < hand.size(); i++) {
             Card currentCard = hand.get(i);
-            if(currentCard instanceof RareCandy) { //instanceof is asking "is the card of type Pokemon?"
+            if(currentCard instanceof Pokemon) { //instanceof is asking "is the card of type Pokemon?"
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean evaluatePrizePile() {
+        for(int i = 0; i < prizePile.size(); i++) {
+            Card currentCard = prizePile.get(i);
+            if(currentCard instanceof RareCandy) { //instanceof is asking "is the card of type rareCandy?"
                 return true;
             }
         }
@@ -53,6 +65,12 @@ public class RareCandyMonteCarlo {
         }
     }
 
+    public void drawPrizePile() {
+        for(int i = 0; i < 6; i++) {
+            prizePile.add(drawCard());
+        }
+    }
+
     public Card drawCard() {
         Random rng = new Random();
         int cardIndex = rng.nextInt(deck.size()); //Find random card.
@@ -61,24 +79,24 @@ public class RareCandyMonteCarlo {
         return drawnCard;
     }
 
-
-    //Make engine for program!
     public void run(double userAmountRun) {
-        int deckSize = 60;
-
         for(int i = 1; i <= 4; i++) {
-            double trueCount = 0;
+            int candyCount = 0;
             for(int j = 1; j <= userAmountRun; j++) {
                 newDeckMultipleCandies(i);
                 drawHand();
+                drawPrizePile();
                 if(evaulateOpeningHand()) {
-                    trueCount += 1;
+                    continue;
+                } //else drawHand();
+                if(evaluatePrizePile()) {
+                    candyCount = candyCount + 1;
                 }
             }
 
-            System.out.println("Number of hands with candies: "+ (trueCount) + ", percentage of hands with candies: "
-                    + (trueCount / userAmountRun) + "%");
-
+            System.out.println("Number of prize piles with candies: " + (candyCount) +
+                    ", percentage of prize piles with all candies: " +
+                    (candyCount / userAmountRun) + "%");
         }
     }
 }

@@ -70,21 +70,28 @@ public class StatsLibrary {
 
     /**
      * This method finds the mode.
+     *
      * @param userArray - array of integer values
      * @return the mode
      */
     //Mode = finding the most common number in a list.
-    public double findMode(int[] userArray) {
+    public String findMode(int[] userArray) {
         TreeMap<Integer, Integer> modeTreeMap = new TreeMap<>();
-        for(int i = 0; i < userArray.length; i++) {
-            modeTreeMap.put(userArray[i], i);
-        }
-        for(int i = 0; i < userArray.length; i++) {
-            if(modeTreeMap.containsKey(userArray[i])) {
-                modeTreeMap.put(userArray[i], i + 1);
+        String mode = "none";
+        int maximumCount = 0;
+        for (int j : userArray) {
+            if (!(modeTreeMap.get(j) == null)) {
+                int temporary = modeTreeMap.get(j);
+                temporary = temporary + 1;
+                if (temporary > maximumCount) {
+                    maximumCount = temporary;
+                    mode = String.valueOf(j);
+                }
+            } else {
+                modeTreeMap.put(j, 1);
             }
         }
-        return modeTreeMap.values().stream().max(Integer::compare).get();
+        return mode;
     }
 
     /**
