@@ -5,13 +5,16 @@ This repository contains documentation, code, Excel sheet data, calculations and
 at Stockton University. All code (minus the Chimchar class) and papers have been written by me, Mia, and everything has been created for Project 1 which is the first
 project of the spring 2024 semester.
 
+
 **Contributors to this repository:**
 Garret Chmielewski
+
 
 **NAVIGATION**
 
 **CODE -**
 Contains code from the Pokemon project, the Stats Library, and the Set Operations library.
+
 **Stats Library -** This includes a full list of the following:
 Mean, median, mode, classic variance, classic standard deviation, the mn rule, permutations,
 combinations, a factorial method using both Longs and BigInteger, conditional probability formulas
@@ -23,17 +26,23 @@ Distribution PMF, the expected value, variance, and standard deviation for geome
 the Hypergeometric Distribution PMF, the expected value, variance, and standard deviation for
 hypergeometric distribution, the Negative Binomial Distribution PMF, and the expected value,
 variance, and standard deviation for negative binomial distribution.
-**Set Operations -** Union, Intersection, and Complement
+
+**Set Operations -** Union, intersection, and complement.
+
 **Birthday Program -** The formula learned from a book homework problem to find the probability of someone else sharing your birthday in a room.
+
 **Pokemon Card Game -** Attackable interface, Pokemon cards, Energy cards, Trainer cards (including Professor's Research, NestBall, etc.), and Rare Candy cards (for
 the second Monte Carlo).
+
 **Monte Carlo Simulations -** The first Monte Carlo simulation computes the probability of having a Pokemon in your hand when there's only one Pokemon in the entire
 deck all the way up to there being 60 Pokemon in the deck (mostly 100% probability that if there's a significantly large amount of Pokemon in your deck, you'll
 draw one in your hand). The second Monte Carlo simulation computes the probability of having a "bricked deck." That is, having rare candies in your Prize Pile and *not*
 your hand along with having zero Pokemon in your hand.
 
+
 **GARRET'S CHIMCHAR CLASS -**
 The Chimchar code was added by Garret Chmielewski during our GitHub assignment in which we were to add code or comments to someone else's repository. CHIMCHAR, USE EMBER!
+
 
 **WRITTEN WORKS -**
 This sections consists of documentation, including written paragraphs on all methods coded in the Stats Library, the Set Operation library, and the Pokemon card game.
