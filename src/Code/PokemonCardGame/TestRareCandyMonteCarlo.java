@@ -10,6 +10,6 @@ public class TestRareCandyMonteCarlo {
         //Creates a new object of type RareCandyMonteCarlo which will be used to test/run the simulation.
         RareCandyMonteCarlo test = new RareCandyMonteCarlo();
         //Runs the simulation 1000 times.
-        test.run(1000.00);
+        test.run(10000.00);
     }
 }

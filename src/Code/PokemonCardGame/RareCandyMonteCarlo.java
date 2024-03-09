@@ -3,6 +3,7 @@ package Code.PokemonCardGame;
 //Import statements for the ArrayList, Arrays, and Random classes.
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -119,58 +120,70 @@ public class RareCandyMonteCarlo {
         return drawnCard;
     }
 
-    /**
-     * This method runs the second Monte Carlo simulation.
-     */
-    //IMPORTANT:
-    //Jake Cubernot helped with this method! This is in progress.
-    public void run1() {
-        String[][] resultMatrix = new String[5][2];
-        resultMatrix[0][0] = "Number of Rare Candies in a Deck of 60";
-        resultMatrix[0][1] = "Chance (%) of Not Bricking";
-        int testCount = 1000000;
-        for (int i = 1; i <= 4; i++) {
-            int candyInPrizeCount = 0;
-            for (int j = 0; j < testCount; j++) {
-                RareCandyMonteCarlo testDeck = new RareCandyMonteCarlo();
-                testDeck.newDeckMultipleCandies(i);
-                if(!isCandyBricked(testDeck)) {
-                    candyInPrizeCount++;
-                }
-            }
-            double rareCandiesProbability = ((double) candyInPrizeCount / testCount) * 100.0;
-            resultMatrix[i][0] = String.valueOf(i);
-            resultMatrix[i][1] = rareCandiesProbability + "%";
-        }
-        System.out.println(Arrays.deepToString(resultMatrix));
-    }
+//    public String[][] pokemonRareCandiesSimulation() {
+//        String[][] resultMatrix = new String[5][2];
+//        resultMatrix[0][0] = "Number of Rare Candies in a Deck of 60";
+//        resultMatrix[0][1] = "Chance (%) of Not Bricking";
+//        int testCount = 1000000;
+//        for (int i = 1; i <= 4; i++) {
+//            int candyInPrizeCount = 0;
+//            for (int j = 0; j < testCount; j++) {
+//                PokemonCardGame testDeck = new PokemonCardGame();
+//                testDeck.buildDeck(20, 40 - i, i);
+//                openingHand(testDeck);
+//                if(!isCandyBricked(testDeck)) {
+//                    candyInPrizeCount++;
+//                }
+//            }
+//            double rareCandiesProbability = ((double) candyInPrizeCount / testCount) * 100.0;
+//            resultMatrix[i][0] = String.valueOf(i);
+//            resultMatrix[i][1] = String.valueOf(rareCandiesProbability + "%");
+//        }
+//        return resultMatrix;
+//    }
 
     public void run(double userAmountRun) {
         for(int i = 1; i <= 4; i++) {
             int candyCount = 0;
-            for(int j = 1; j <= userAmountRun; j++) {
-                newDeckMultipleCandies(i);
-                drawHand();
-                drawPrizePile();
-                if(evaluateOpeningHand()) {
-                    continue;
-                } else drawHand();
-                if(evaluatePrizePile()) {
-                    candyCount = candyCount + 1;
+            for(int j = 0; j < userAmountRun; j++) {
+                RareCandyMonteCarlo candyDeck = new RareCandyMonteCarlo();
+                candyDeck.newDeckMultipleCandies(i);
+                openingHand(candyDeck);
+                if(!isCandyBricked(candyDeck)) {
+                    candyCount++;
                 }
             }
-
-            System.out.println("Number of prize piles with candies: " + (candyCount) +
+            System.out.println("Candy count: " + i + ", Number of prize piles with all candies: " + (candyCount) +
                     ", percentage of prize piles with all candies: " +
-                    (candyCount / userAmountRun) + "%");
+                    ((candyCount / userAmountRun) * 100) + "%");
             System.out.println("Percent chance of not getting a bricked deck: "
-                    + (100 - (candyCount / userAmountRun)) + "%" + "\n");
+                    + (100 - ((candyCount / userAmountRun) * 100)) + "%" + "\n");
         }
     }
 
-    private boolean isCandyBricked(RareCandyMonteCarlo player) {
-        for (int i = 0; i < player.prizePile.size(); i++) {
-            if (player.prizePile.get(i) instanceof Trainer) {
+    public void openingHand(RareCandyMonteCarlo candyDeck) {
+        candyDeck.drawHand();
+        boolean openingHandsReady = false;
+        while (!openingHandsReady) {
+            if (!candyDeck.evaluateOpeningHand()) {
+                candyDeck.restartOpeningHand();
+                candyDeck.drawHand();
+            } else {
+                openingHandsReady = true;
+            }
+        }
+        candyDeck.drawPrizePile();
+    }
+
+    public void restartOpeningHand() {
+        deck.addAll(hand);
+        hand.clear();
+        Collections.shuffle(deck);
+    }
+
+    private boolean isCandyBricked(RareCandyMonteCarlo candyDeck) {
+        for (int i = 0; i < candyDeck.prizePile.size(); i++) {
+            if (candyDeck.prizePile.get(i) instanceof RareCandy) {
                 return false;
             }
         } return true;
