@@ -6,8 +6,8 @@ at Stockton University. All code (minus the Chimchar class) and papers have been
 project of the spring 2024 semester.
 
 
-**Contributors to this repository:**
-Garret Chmielewski
+**Contributors / people who helped me with this repository:**
+Garret Chmielewski (Added the Chimchar class), Jake Cubernot (Helped guide me on how to complete the Rare Candy Monte Carlo)
 
 
 **NAVIGATION** Go through the src folder to find everything!
