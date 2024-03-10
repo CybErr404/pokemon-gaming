@@ -4,7 +4,7 @@ package Code.PokemonCardGame;
  * @author Mia Watts
  */
 //Creates HP, damage, attack names, and getter/setter methods.
-public class PokemonInheritance {
+public class PokemonInheritance extends Card {
     //Declares HP, damage, and attack name variables.
     private int hp;
     private int damage;

@@ -10,17 +10,9 @@ import java.util.Random;
  * Implements the NestBall trainer card.
  */
 
-public class NestBall extends Trainer {
+public class NestBall extends Trainer implements TrainerActions {
     //Declares the bench Card ArrayList.
     private ArrayList <Card> bench;
-
-    /**
-     * Initializes the bench Card ArrayList.
-     * @param bench - ArrayList parameter that is updated within the constructor.
-     */
-    public NestBall(ArrayList<Card> bench) {
-        this.bench = bench;
-    }
 
     /**
      * Method that performs functions NestBall trainer cards would perform in the actual game.

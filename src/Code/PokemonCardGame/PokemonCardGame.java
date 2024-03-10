@@ -2,6 +2,7 @@ package Code.PokemonCardGame;
 
 //Imports the ArrayList and Random classes for card use.
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -19,6 +20,10 @@ public class PokemonCardGame {
     private ArrayList <Card> discardPile;
     private ArrayList <Card> activePokemon;
     private ArrayList <Card> bench;
+
+    //Adds player objects to the game.
+    Player player1 = new Player();
+    Player player2 = new Player();
 
     /**
      * This constructor initializes each of the private variables as new ArrayLists of type Card.
@@ -73,23 +78,36 @@ public class PokemonCardGame {
     public ArrayList<Card> getActivePokemon() { return activePokemon; }
 
     /**
-     * Builds the deck with 10 Pokemon, 30 Trainers, and 20 Energy cards.
+     * Builds the deck with Pokemon, Trainer cards, and Energy cards.
      */
     public void buildDeck(){
-        //Adds 10 Pokemon.
-        for(int i = 0; i < 10; i++){
-            deck.add(new Pokemon());
-        }
+        PokemonInheritance[] pokemon = {new Pikachu(), new Bulbasaur(), new Fennekin(), new Chimchar()};
+        Trainer[] trainer = {new NestBall(), new ProfessorsResearch(), new TrainerLillie(), new TrainerLeon()};
 
-        //Adds 30 Trainer cards.
-        for(int i = 0; i < 30; i++){
-            deck.add(new Trainer());
-        }
+        //Adds Pokemon cards.
+        Collections.addAll(deck, pokemon);
 
-        //Adds 20 Energy cards.
+        //Adds Trainer cards.
+        Collections.addAll(deck, trainer);
+
+        //Adds 20 generic Energy cards.
         for(int i = 0; i < 20; i++){
             deck.add(new Energy());
         }
+
+        //Adds 16 generic Trainer cards.
+        for(int i = 0; i < 16; i++){
+            deck.add(new Trainer());
+        }
+
+        //Adds 16 generic Pokemon cards.
+        for(int i = 0; i < 16; i++){
+            deck.add(new Pokemon());
+        }
+    }
+
+    public void startGame() {
+
     }
 
     /**
@@ -233,13 +251,6 @@ public class PokemonCardGame {
     }
 
     /**
-     * Creates the game deck for the player game.
-     */
-    public void gameDeck() {
-
-    }
-
-    /**
      * This method uses the Random class to randomly draw and select a card from the deck,
      * returning the chosen card.
      * @return The card that was randomly drawn from the deck.
@@ -272,5 +283,25 @@ public class PokemonCardGame {
             }
         }
         return false;
+    }
+
+    public boolean checkIfWinner() {
+        if(player1.prizePile.size() == 0) {
+            return true;
+        } else if (player2.prizePile.size() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Plays the 2-player Pokemon Card Game.
+     */
+    public void playGame() {
+        System.out.println(printInstructions());
+        boolean keepPlaying = true;
+        while(keepPlaying) {
+            keepPlaying = false;
+        }
     }
 }
