@@ -2,7 +2,8 @@ package Code.PokemonCardGame;
 
 /**
  * @author Mia Watts
- * Runs the actual Pokemon game!
+ * Runs the actual Pokemon game! This class creates Player objects and a test PokemonCardGame
+ * object, running the "play game" method to start the card game.
  */
 public class TestPokemonCardGame {
 
@@ -14,6 +15,6 @@ public class TestPokemonCardGame {
         //Declares and initializes two player objects that will be able to play the game together.
         Player player1 = new Player();
         Player player2 = new Player();
-
+        //test.playGame();
     }
 }
