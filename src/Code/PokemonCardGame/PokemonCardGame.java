@@ -264,21 +264,47 @@ public class PokemonCardGame {
     }
 
     /**
-     * Draws a hand of 7 cards for a player.
-     */
-    public void drawHand() {
-        for(int i = 0; i < 7; i++) {
-            hand.add(drawCard());
-        }
-    }
-
-    /**
-     * Method that checks whether a current card is of type Pokemon.
+     * Method that checks whether a current card is of type Pokemon or any Pokemon types implemented
+     * in the card game.
      * @return true if the current card in the deck is of type Pokemon and false otherwise.
      */
     public boolean evaluateOpeningHand() {
         for (Card currentCard : hand) {
-            if (currentCard instanceof Pokemon) {
+            if (currentCard instanceof Pokemon || currentCard instanceof Fennekin ||
+                    currentCard instanceof Bulbasaur || currentCard instanceof Chimchar || currentCard
+                    instanceof Pikachu) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Method that checks whether a current card is of type Pokemon or any Pokemon types implemented
+     * in the card game.
+     * @return true if the current card in the bench is of type Pokemon and false otherwise.
+     */
+    public boolean evaluateBench() {
+        for (Card currentCard : bench) {
+            if (currentCard instanceof Pokemon || currentCard instanceof Fennekin ||
+                    currentCard instanceof Bulbasaur || currentCard instanceof Chimchar || currentCard
+                    instanceof Pikachu) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Method that checks whether a current card is of type Pokemon or any Pokemon types implemented
+     * in the card game.
+     * @return true if the current card in the active position is of type Pokemon and false otherwise.
+     */
+    public boolean evaluateActive() {
+        for (Card currentCard : activePokemon) {
+            if (currentCard instanceof Pokemon || currentCard instanceof Fennekin ||
+                    currentCard instanceof Bulbasaur || currentCard instanceof Chimchar || currentCard
+                    instanceof Pikachu) {
                 return true;
             }
         }
@@ -290,8 +316,7 @@ public class PokemonCardGame {
             return true;
         } else if (player2.prizePile.size() == 0) {
             return true;
-        }
-        return false;
+        } else return evaluateActive() || evaluateBench() || evaluateOpeningHand();
     }
 
     /**
