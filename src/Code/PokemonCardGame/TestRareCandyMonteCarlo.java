@@ -9,7 +9,7 @@ public class TestRareCandyMonteCarlo {
     public static void main(String[] args) {
         //Creates a new object of type RareCandyMonteCarlo which will be used to test/run the simulation.
         RareCandyMonteCarlo test = new RareCandyMonteCarlo();
-        //Runs the simulation 1000 times.
+        //Runs the simulation 10000 times.
         test.run(10000.00);
     }
 }

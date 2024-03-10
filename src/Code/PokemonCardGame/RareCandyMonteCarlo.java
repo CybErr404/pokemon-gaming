@@ -11,7 +11,7 @@ import java.util.Random;
  * DISCLAIMER:
  * Jake Cubernot helped with figuring out how to properly run the Rare Candy Monte Carlo.
  * Code that was created with his assistance will have his name above it to show his contributions.
- * Thanks, Jake!
+ * Thanks, Jake! :)
  */
 public class RareCandyMonteCarlo {
     //Declares the deck, hand, and prizePile card lists.
@@ -120,31 +120,19 @@ public class RareCandyMonteCarlo {
         return drawnCard;
     }
 
-//    public String[][] pokemonRareCandiesSimulation() {
-//        String[][] resultMatrix = new String[5][2];
-//        resultMatrix[0][0] = "Number of Rare Candies in a Deck of 60";
-//        resultMatrix[0][1] = "Chance (%) of Not Bricking";
-//        int testCount = 1000000;
-//        for (int i = 1; i <= 4; i++) {
-//            int candyInPrizeCount = 0;
-//            for (int j = 0; j < testCount; j++) {
-//                PokemonCardGame testDeck = new PokemonCardGame();
-//                testDeck.buildDeck(20, 40 - i, i);
-//                openingHand(testDeck);
-//                if(!isCandyBricked(testDeck)) {
-//                    candyInPrizeCount++;
-//                }
-//            }
-//            double rareCandiesProbability = ((double) candyInPrizeCount / testCount) * 100.0;
-//            resultMatrix[i][0] = String.valueOf(i);
-//            resultMatrix[i][1] = String.valueOf(rareCandiesProbability + "%");
-//        }
-//        return resultMatrix;
-//    }
-
+    /**
+     * This method runs the actual simulation and prints the results one-by-one.
+     * @param userAmountRun - Specifies a double value that represents the amount of times the
+     *                      program will be repeated to produce results.
+     */
+    //This run method was mostly written by me, Mia Watts, but the openingHand and isCandyBricked methods
+    //were methods that Jake Cubernot helped with during the implementation process of this simulation.
     public void run(double userAmountRun) {
+        //Loops through i values of 1, 2, 3, and 4, each representing the amount of candy added
+        //to the deck.
         for(int i = 1; i <= 4; i++) {
             int candyCount = 0;
+            //Repeats the simulation as many times as the parameter says to.
             for(int j = 0; j < userAmountRun; j++) {
                 RareCandyMonteCarlo candyDeck = new RareCandyMonteCarlo();
                 candyDeck.newDeckMultipleCandies(i);
@@ -153,6 +141,7 @@ public class RareCandyMonteCarlo {
                     candyCount++;
                 }
             }
+            //Prints the results of the simulation.
             System.out.println("Candy count: " + i + ", Number of prize piles with all candies: " + (candyCount) +
                     ", percentage of prize piles with all candies: " +
                     ((candyCount / userAmountRun) * 100) + "%");
@@ -161,26 +150,49 @@ public class RareCandyMonteCarlo {
         }
     }
 
+    /**
+     * JAKE CUBERNOT HELPED WITH THIS METHOD!
+     *
+     * This method redraws hands until there are Pokemon in them because otherwise the hand isn't proper.
+     * @param candyDeck - Represents the RareCandyMonteCarlo object that, when passed within
+     *                  the run method, is the candy deck, hence the name.
+     */
     public void openingHand(RareCandyMonteCarlo candyDeck) {
         candyDeck.drawHand();
-        boolean openingHandsReady = false;
-        while (!openingHandsReady) {
+        boolean isReady = false;
+        while (!isReady) {
             if (!candyDeck.evaluateOpeningHand()) {
                 candyDeck.restartOpeningHand();
                 candyDeck.drawHand();
             } else {
-                openingHandsReady = true;
+                isReady = true;
             }
         }
         candyDeck.drawPrizePile();
     }
 
+    /**
+     * JAKE CUBERNOT IS THE AUTHOR OF THIS METHOD AND HELPED ME CREATE IT!
+     *
+     * This method restarts the opening hand by adding all contents of the hand into the deck, clearing
+     * the hand, and shuffling the deck.
+     */
     public void restartOpeningHand() {
         deck.addAll(hand);
         hand.clear();
         Collections.shuffle(deck);
     }
 
+    /**
+     * JAKE CUBERNOT HELPED WITH THIS METHOD!
+     *
+     * This method determines whether the game is bricked based on whether there are candies
+     * in the prize pile or not.
+     * @param candyDeck - represents the RareCandyMonteCarlo object. In the run method, the
+     *                  object is the deck with the candies, so I called it candyDeck.
+     * @return True if the prize pile didn't brick the game because it doesn't contain the rare candies
+     * and false if the prize pile does make the game bricked because it contains the rare candies.
+     */
     private boolean isCandyBricked(RareCandyMonteCarlo candyDeck) {
         for (int i = 0; i < candyDeck.prizePile.size(); i++) {
             if (candyDeck.prizePile.get(i) instanceof RareCandy) {
