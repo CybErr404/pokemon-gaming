@@ -32,8 +32,45 @@ public class PokemonCardGame {
         activePokemon = new ArrayList<Card>();
     }
 
+    /**
+     * Returns the current deck.
+     * @return ArrayList deck object.
+     */
+    public ArrayList<Card> getDeck(){
+        return deck;
+    }
 
-    //New stuff added class 2/6/2024.
+    /**
+     * Returns the current hand.
+     * @return ArrayList hand object.
+     */
+    public ArrayList<Card> getHand(){
+        return hand;
+    }
+
+    /**
+     * Returns the player's prize pile.
+     * @return ArrayList prize pile object.
+     */
+    public ArrayList<Card> getPrizePile() { return prizePile; }
+
+    /**
+     * Returns the player's discard pile.
+     * @return ArrayList discard pile object.
+     */
+    public ArrayList<Card> getDiscardPile() { return discardPile; }
+
+    /**
+     * Returns the player's current bench.
+     * @return ArrayList bench object.
+     */
+    public ArrayList<Card> getBench() { return bench; }
+
+    /**
+     * Returns the player's active Pokemon.
+     * @return ArrayList active Pokemon object.
+     */
+    public ArrayList<Card> getActivePokemon() { return activePokemon; }
 
     /**
      * Builds the deck with 10 Pokemon, 30 Trainers, and 20 Energy cards.
@@ -95,22 +132,6 @@ public class PokemonCardGame {
     public void nestPlay() {
         buildDeck();
         playNestBall();
-    }
-
-    /**
-     * Returns the current deck.
-     * @return ArrayList deck object.
-     */
-    public ArrayList<Card> getDeck(){
-        return deck;
-    }
-
-    /**
-     * Returns the current hand.
-     * @return ArrayList hand object.
-     */
-    public ArrayList<Card> getHand(){
-        return hand;
     }
 
     /**
