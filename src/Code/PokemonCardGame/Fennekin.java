@@ -25,7 +25,7 @@ public class Fennekin extends PokemonInheritance implements Attackable {
         //Deals 10 damage to the unfortunate Pokemon being attacked.
         int currentHP = unfortunatePokemon.getHp();
         int newHP = currentHP - 10;
-        setHp(newHP);
+        unfortunatePokemon.setHp(newHP);
     }
 
     /**
@@ -38,6 +38,6 @@ public class Fennekin extends PokemonInheritance implements Attackable {
         //Deals 20 damage to the unfortunate Pokemon being attacked.
         int currentHP = unfortunatePokemon.getHp();
         int newHP = currentHP - 20;
-        setHp(newHP);
+        unfortunatePokemon.setHp(newHP);
     }
 }

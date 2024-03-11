@@ -19,7 +19,8 @@ public class PokemonCardGame {
     private ArrayList <Card> hand;
     private ArrayList <Card> prizePile;
     private ArrayList <Card> discardPile;
-    private ArrayList <Card> activePokemon;
+    private ArrayList <Card> activePokemon1;
+    private ArrayList <Card> activePokemon2;
     private ArrayList <Card> bench;
 
     //Adds player objects to the game.
@@ -37,7 +38,8 @@ public class PokemonCardGame {
         bench = new ArrayList<Card>();
         discardPile = new ArrayList<Card>();
         prizePile = new ArrayList<Card>();
-        activePokemon = new ArrayList<Card>();
+        activePokemon1 = new ArrayList<Card>();
+        activePokemon2 = new ArrayList<Card>();
     }
 
     /**
@@ -75,10 +77,16 @@ public class PokemonCardGame {
     public ArrayList<Card> getBench() { return bench; }
 
     /**
-     * Returns the player's active Pokemon.
+     * Returns the first player's active Pokemon.
      * @return ArrayList active Pokemon object.
      */
-    public ArrayList<Card> getActivePokemon() { return activePokemon; }
+    public ArrayList<Card> getActivePokemon1() { return activePokemon1; }
+
+    /**
+     * Returns the second player's active Pokemon.
+     * @return ArrayList active Pokemon object.
+     */
+    public ArrayList<Card> getActivePokemon2() { return activePokemon2; }
 
     /**
      * Builds the deck with Pokemon, Trainer cards, and Energy cards.
@@ -227,8 +235,8 @@ public class PokemonCardGame {
      * @return A String that contains the instructions for the game.
      */
     public String printInstructions() {
-        return "Pick a Pokemon to attack with! If " +
-                "the other player's prize pile runs out before yours, you win!";
+        return "Select an attack to use. If you faint your opponent's Pokemon or run out of prize " +
+                "cards, you win!";
     }
 
     /**
@@ -322,7 +330,7 @@ public class PokemonCardGame {
      * @return true if the current card in the active position is of type Pokemon and false otherwise.
      */
     public boolean evaluateActive() {
-        for (Card currentCard : activePokemon) {
+        for (Card currentCard : activePokemon1) {
             if (currentCard instanceof Pokemon || currentCard instanceof Fennekin ||
                     currentCard instanceof Bulbasaur || currentCard instanceof Chimchar || currentCard
                     instanceof Pikachu) {
@@ -332,12 +340,28 @@ public class PokemonCardGame {
         return false;
     }
 
+    /**
+     * Method that checks whether a current card is of type Pokemon or any Pokemon types implemented
+     * in the card game.
+     * @return true if the current card in the active position is of type Pokemon and false otherwise.
+     */
+    public boolean evaluateActive2() {
+        for (Card currentCard : activePokemon2) {
+            if (currentCard instanceof Pokemon || currentCard instanceof Fennekin ||
+                    currentCard instanceof Bulbasaur || currentCard instanceof Chimchar || currentCard
+                    instanceof Pikachu) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks to see if the current player is the winner based on whether their Pokemon has fainted or not.
+     * @return true if the player has won and has fainted their opponent's Pokemon and false otherwise.
+     */
     public boolean checkIfWinner() {
-        if (player1.prizePile.size() == 0) {
-            return true;
-        } else if (player2.prizePile.size() == 0) {
-            return true;
-        } else return evaluateActive() || evaluateBench() || evaluateOpeningHand();
+        return chimchar.getHp() <= 0 || fennekin.getHp() <= 0;
     }
 
     /**
@@ -350,65 +374,118 @@ public class PokemonCardGame {
             player1Turn();
             if(checkIfWinner()) {
                 keepPlaying = false;
-                System.out.println("Game over! Someone has won.");
             }
             player2Turn();
             if(checkIfWinner()) {
                 keepPlaying = false;
-                System.out.println("Game over! Someone has won.");
             }
         }
     }
 
+    //Declares and initializes the Pokemon used for the simple game methods.
+    Fennekin fennekin = new Fennekin();
+    Chimchar chimchar = new Chimchar();
+
+    /**
+     * Represents a single turn done by player 1 in which the player can attack which ends their turn,
+     * then see how much damage they've done.
+     */
     public void player1Turn() {
-        ArrayList<Card> deck1 = player1.buildDeck();
-        ArrayList<Card> hand1 = player1.buildSimpleHand1();
-        ArrayList<Card> prize1 = player1.buildPrizePile();
+        //Creates and initializes cards belonging to the first player.
+        ArrayList<Card> deck1 = new ArrayList<>();
+        player1.buildDeck(deck1);
+        ArrayList<Card> hand1 = new ArrayList<>();
+        player1.buildSimpleHand1(hand1);
+        ArrayList<Card> prize1 = new ArrayList<>();
+        player1.buildPrizePile(prize1);
+        //Prints instructions.
         System.out.println("Player 1's Turn! What do you want to do? Enter a number that matches" +
-                "your desired action.");
-        System.out.println("[1] - Attack!");
-        System.out.println("[2] - Use Energy!");
-        System.out.println("[3] - Use a Trainer card!");
-        System.out.println(player1.getHand());
+                " your desired action.");
+        System.out.println("[1] - Attack using Live Coal!");
+        System.out.println("[2] - Attack using Rear Kick!");
+//      System.out.println("[2] - Use Energy!");
+//      System.out.println("[3] - Use a Trainer card!");
+        //Creates a scanner to read user input.
         Scanner input = new Scanner(System.in);
         int userInput = Integer.parseInt(input.nextLine());
-        switch(userInput) {
-            case 1:
-                for(int i = 0; i < hand1.size(); i++) {
-                    if(hand1.get(i) instanceof Fennekin) {
-
-                    }
-                }
-            case 2:
-
+        //Checks to see if the user has entered the correct number. If so, the LIVE COAL attack
+        //is used against the opponent's Chimchar.
+        if (userInput == 1) {
+            System.out.println("Fennekin, USE LIVE COAL!");
+            fennekin.attackOne(chimchar);
+            System.out.println("Fennekin's HP: " + fennekin.getHp() + ", Chimchar's HP: " + chimchar.getHp() + "\n");
+            if(chimchar.getHp() <= 0) {
+                System.out.println("Chimchar has fainted.");
+                System.out.println("Player 1 wins!");
+            }
         }
+        //Checks to see if the user has entered the correct number. If so, the REAR KICK attack is used
+        //against the opponent's Chimchar.
+        if (userInput == 2) {
+            System.out.println("Fennekin, USE REAR KICK!");
+            fennekin.attackTwo(chimchar);
+            System.out.println("Fennekin's HP: " + fennekin.getHp() + ", Chimchar's HP: " + chimchar.getHp()  + "\n");
+            if (chimchar.getHp() <= 0) {
+                System.out.println("Chimchar has fainted.");
+                System.out.println("Player 1 wins!");
+            }
+        }
+        //Adds a prize pile card to the hand and removes a card from the hand.
         hand1.add(prize1.get(0));
+        for(int i = 0; i < hand1.size(); i++) {
+            if(!(hand1.get(i) instanceof Fennekin)) {
+                hand1.remove(i);
+                break;
+            }
+        }
+        //Removes a card from the prize pile.
         prize1.remove(0);
     }
 
+    /**
+     * Implements player 2's turn in which everything from player 1's turn is implemented a second
+     * time minus the deck, hand, and prize pile which are unique to the second player.
+     */
     public void player2Turn() {
-        ArrayList<Card> deck2 = player2.buildDeck();
-        ArrayList<Card> hand2 = player2.buildSimpleHand2();
-        ArrayList<Card> prize2 = player2.buildPrizePile();
+        //Creates and initializes what cards belong to the second player.
+        ArrayList<Card> deck2 = new ArrayList<>();
+        player2.buildDeck(deck2);
+        ArrayList<Card> hand2 = new ArrayList<>();
+        player2.buildSimpleHand2(hand2);
+        ArrayList<Card> prize2 = new ArrayList<>();
+        player2.buildPrizePile(prize2);
+        //Gives instructions.
         System.out.println("Player 2's Turn! What do you want to do? Enter a number that matches" +
-                "your desired action.");
-        System.out.println("[1] - Attack!");
-        System.out.println("[2] - Use Energy!");
-        System.out.println("[3] - Use a Trainer card!");
-        System.out.println(player2.getHand());
+                " your desired action.");
+        System.out.println("[1] - Attack using scratch!");
+//      System.out.println("[2] - Use Energy!");
+//      System.out.println("[3] - Use a Trainer card!");
+        //Uses a scanner to read user input to determine which attack to use.
         Scanner input = new Scanner(System.in);
         int userInput = Integer.parseInt(input.nextLine());
-        switch(userInput) {
-            case 1:
-                for(int i = 0; i < hand2.size(); i++) {
-                    if(hand2.get(i) instanceof Bulbasaur) {
+        //Makes sure the user entered a 1. If not, the program throws an error.
+        //If the user entered a 1, Chimchar's SCRATCH attack is used against Player 1's Fennekin.
+        //The results are printed along with the attack used. If the player wins, the program prints a
+        //statement saying they've won.
+        if (userInput == 1) {
+            System.out.println("Chimchar, USE SCRATCH!");
+            chimchar.attackOne(fennekin);
+            System.out.println("Chimchar's HP: " + chimchar.getHp() + ", Fennekin's HP: " + fennekin.getHp() + "\n");
 
-                    }
-                }
-            case 2:
-
+            if (fennekin.getHp() <= 0) {
+                System.out.println("Fennekin has fainted.");
+                System.out.println("Player 2 wins!");
+            }
         }
+        //Adds a card from the prize pile to the hand and removes a card from the hand.
         hand2.add(prize2.get(0));
+        for(int i = 0; i < hand2.size(); i++) {
+            if(!(hand2.get(i) instanceof Fennekin)) {
+                hand2.remove(i);
+                break;
+            }
+        }
+        //Removes a card from the prize pile.
         prize2.remove(0);
     }
 }

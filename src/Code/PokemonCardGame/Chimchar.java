@@ -2,6 +2,7 @@ package Code.PokemonCardGame;
 
 // Chimchar class added by Garret Chmielewski during the GitHub classmate editing assignment.
 // This code was written by Garret!
+// Some edits were done be me, Mia Watts.
 
 /**
  * @author Garret Chmielewski
@@ -26,7 +27,7 @@ public class Chimchar extends PokemonInheritance implements Attackable
         //Deals 10 damage to the target Pokemon (unfortunatePokemon).
         int currentHP = unfortunatePokemon.getHp();
         int newHP = currentHP-10;
-        setHp(newHP);
+        unfortunatePokemon.setHp(newHP);
     }
 
     /**

@@ -35,7 +35,7 @@ public class Player {
      *
      * @return
      */
-    public ArrayList<Card> buildDeck(){
+    public void buildDeck(ArrayList<Card> deck){
         deck.clear();
         PokemonInheritance[] pokemon = {new Pikachu(), new Bulbasaur(), new Fennekin(), new Chimchar()};
         Trainer[] trainer = {new NestBall(), new ProfessorsResearch(), new TrainerLillie(), new TrainerLeon()};
@@ -60,9 +60,12 @@ public class Player {
         for(int i = 0; i < 16; i++){
             deck.add(new Pokemon());
         }
-        return null;
     }
 
+    /**
+     * Builds a hand in which the player has a Pikachu, Bulbasaur, Fennekin, and Chimchar card along
+     * with Lillie, Leon, and Professor's Research cards.
+     */
     public void buildHand() {
         PokemonInheritance[] pokemon = {new Pikachu(), new Bulbasaur(), new Fennekin(), new Chimchar()};
         for(int i = 0; i < hand.size(); i++) {
@@ -73,7 +76,13 @@ public class Player {
         hand.add(new ProfessorsResearch());
     }
 
-    public ArrayList<Card> buildSimpleHand1() {
+    /**
+     * This method builds a simple hand for playing the simplest version of a Pokemon card game
+     * with two players for the first player. A Fennekin, Lillie, Leon, Professor's Research,
+     * and several generic Pokemon, Energy, and Trainer cards are added.
+     * @param hand - The hand array that is built for the player.
+     */
+    public void buildSimpleHand1(ArrayList<Card> hand) {
         hand.clear();
         hand.add(new Fennekin());
         hand.add(new TrainerLillie());
@@ -82,28 +91,34 @@ public class Player {
         hand.add(new Pokemon());
         hand.add(new Energy());
         hand.add(new Trainer());
-        return null;
     }
 
-    public ArrayList<Card> buildSimpleHand2() {
+    /**
+     * Builds a simple hand for the second player, giving the player a Chimchar instead of a Fennekin.
+     * @param hand - The hand array that is build for the player.
+     */
+    public void buildSimpleHand2(ArrayList<Card> hand) {
         hand.clear();
-        hand.add(new Bulbasaur());
+        hand.add(new Chimchar());
         hand.add(new TrainerLillie());
         hand.add(new TrainerLeon());
         hand.add(new ProfessorsResearch());
         hand.add(new Pokemon());
         hand.add(new Energy());
         hand.add(new Trainer());
-        return null;
     }
 
-    public ArrayList<Card> buildPrizePile() {
+    /**
+     * This method builds a prize pile for a player, adding generic Pokemon, Energy, and Trainer cards
+     * to the pile for use.
+     * @param prizePile - Player prize pile to be initialized and created.
+     */
+    public void buildPrizePile(ArrayList<Card> prizePile) {
         for(int i = 0; i < 6; i++) {
             prizePile.add(new Pokemon());
             prizePile.add(new Energy());
             prizePile.add(new Trainer());
         }
-        return null;
     }
 
     /**
