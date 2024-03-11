@@ -374,6 +374,7 @@ public class PokemonCardGame {
             player1Turn();
             if(checkIfWinner()) {
                 keepPlaying = false;
+                break;
             }
             player2Turn();
             if(checkIfWinner()) {
@@ -401,8 +402,8 @@ public class PokemonCardGame {
         //Prints instructions.
         System.out.println("Player 1's Turn! What do you want to do? Enter a number that matches" +
                 " your desired action.");
-        System.out.println("[1] - Attack using Live Coal!");
-        System.out.println("[2] - Attack using Rear Kick!");
+        System.out.println("[1] - Fennekin attacks using Live Coal!");
+        System.out.println("[2] - Fennekin attacks using Rear Kick!");
 //      System.out.println("[2] - Use Energy!");
 //      System.out.println("[3] - Use a Trainer card!");
         //Creates a scanner to read user input.
@@ -457,7 +458,7 @@ public class PokemonCardGame {
         //Gives instructions.
         System.out.println("Player 2's Turn! What do you want to do? Enter a number that matches" +
                 " your desired action.");
-        System.out.println("[1] - Attack using scratch!");
+        System.out.println("[1] - Chimchar attacks using Scratch!");
 //      System.out.println("[2] - Use Energy!");
 //      System.out.println("[3] - Use a Trainer card!");
         //Uses a scanner to read user input to determine which attack to use.
