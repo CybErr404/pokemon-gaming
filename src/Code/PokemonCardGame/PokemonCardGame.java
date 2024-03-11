@@ -487,5 +487,6 @@ public class PokemonCardGame {
         }
         //Removes a card from the prize pile.
         prize2.remove(0);
+
     }
 }
