@@ -117,10 +117,6 @@ public class PokemonCardGame {
         }
     }
 
-    public void startGame() {
-
-    }
-
     /**
      * Plays the NestBall card by finding all Pokemon, putting one on the bench, and reshuffling them.
      */
