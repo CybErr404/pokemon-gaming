@@ -15,7 +15,7 @@ public class TrainerLeon extends Trainer implements TrainerActions {
      * Resets once the turn is over.
      * @param pokemon - Pokemon that will be able to attack with 30 more dealt damage.
      */
-    public void Leon(Trainer pokemon) {
+    public void Leon(PokemonCardGame pokemon) {
         while(currentTurn) {
             pokemon.setDamage(pokemon.getDamage() + 30);
             currentTurn = false;
@@ -27,7 +27,12 @@ public class TrainerLeon extends Trainer implements TrainerActions {
      * Method to implement the playable version of the Leon Trainer card.
      * @param gameState - Current state of the game.
      */
+    @Override
     public void playable(PokemonCardGame gameState) {
-
+        while(currentTurn) {
+            gameState.setDamage(gameState.getDamage() + 30);
+            currentTurn = false;
+        }
+        gameState.setDamage(gameState.getDamage() - 30);
     }
 }

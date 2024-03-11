@@ -4,6 +4,7 @@ package Code.PokemonCardGame;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * @author Mia Watts
@@ -24,6 +25,8 @@ public class PokemonCardGame {
     //Adds player objects to the game.
     Player player1 = new Player();
     Player player2 = new Player();
+
+    private int damage;
 
     /**
      * This constructor initializes each of the private variables as new ArrayLists of type Card.
@@ -150,6 +153,24 @@ public class PokemonCardGame {
     public void nestPlay() {
         buildDeck();
         playNestBall();
+    }
+
+    /**
+     * Setter method that sets the damage done by a Pokemon.
+     * This value is used in the Trainer classes where the damage done by a Pokemon can be increased.
+     * @param userInputDamage - Integer value that sets the damage done by the Pokemon
+     *                        to whatever the value is.
+     */
+    public void setDamage(int userInputDamage) {
+        damage = userInputDamage;
+    }
+
+    /**
+     * Getter method that returns the damage.
+     * @return Returns the damage done by the Pokemon.
+     */
+    public int getDamage() {
+        return damage;
     }
 
     /**
@@ -312,7 +333,7 @@ public class PokemonCardGame {
     }
 
     public boolean checkIfWinner() {
-        if(player1.prizePile.size() == 0) {
+        if (player1.prizePile.size() == 0) {
             return true;
         } else if (player2.prizePile.size() == 0) {
             return true;
@@ -326,7 +347,68 @@ public class PokemonCardGame {
         System.out.println(printInstructions());
         boolean keepPlaying = true;
         while(keepPlaying) {
-            keepPlaying = false;
+            player1Turn();
+            if(checkIfWinner()) {
+                keepPlaying = false;
+                System.out.println("Game over! Someone has won.");
+            }
+            player2Turn();
+            if(checkIfWinner()) {
+                keepPlaying = false;
+                System.out.println("Game over! Someone has won.");
+            }
         }
+    }
+
+    public void player1Turn() {
+        ArrayList<Card> deck1 = player1.buildDeck();
+        ArrayList<Card> hand1 = player1.buildSimpleHand1();
+        ArrayList<Card> prize1 = player1.buildPrizePile();
+        System.out.println("Player 1's Turn! What do you want to do? Enter a number that matches" +
+                "your desired action.");
+        System.out.println("[1] - Attack!");
+        System.out.println("[2] - Use Energy!");
+        System.out.println("[3] - Use a Trainer card!");
+        System.out.println(player1.getHand());
+        Scanner input = new Scanner(System.in);
+        int userInput = Integer.parseInt(input.nextLine());
+        switch(userInput) {
+            case 1:
+                for(int i = 0; i < hand1.size(); i++) {
+                    if(hand1.get(i) instanceof Fennekin) {
+
+                    }
+                }
+            case 2:
+
+        }
+        hand1.add(prize1.get(0));
+        prize1.remove(0);
+    }
+
+    public void player2Turn() {
+        ArrayList<Card> deck2 = player2.buildDeck();
+        ArrayList<Card> hand2 = player2.buildSimpleHand2();
+        ArrayList<Card> prize2 = player2.buildPrizePile();
+        System.out.println("Player 2's Turn! What do you want to do? Enter a number that matches" +
+                "your desired action.");
+        System.out.println("[1] - Attack!");
+        System.out.println("[2] - Use Energy!");
+        System.out.println("[3] - Use a Trainer card!");
+        System.out.println(player2.getHand());
+        Scanner input = new Scanner(System.in);
+        int userInput = Integer.parseInt(input.nextLine());
+        switch(userInput) {
+            case 1:
+                for(int i = 0; i < hand2.size(); i++) {
+                    if(hand2.get(i) instanceof Bulbasaur) {
+
+                    }
+                }
+            case 2:
+
+        }
+        hand2.add(prize2.get(0));
+        prize2.remove(0);
     }
 }

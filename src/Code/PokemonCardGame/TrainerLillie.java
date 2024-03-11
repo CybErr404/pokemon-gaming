@@ -41,6 +41,7 @@ public class TrainerLillie extends Trainer {
      * @param gameState - PokemonCardGame object that is used to determine the current state
      *                  of the game for future use or changes.
      */
+    @Override
     public void playable(PokemonCardGame gameState) {
 
     }

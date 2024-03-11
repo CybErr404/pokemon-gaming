@@ -29,24 +29,6 @@ public class Trainer extends Card implements TrainerActions {
     }
 
     /**
-     * Setter method that sets the damage done by a Pokemon.
-     * This value is used in the Trainer classes where the damage done by a Pokemon can be increased.
-     * @param userInputDamage - Integer value that sets the damage done by the Pokemon
-     *                        to whatever the value is.
-     */
-    public void setDamage(int userInputDamage) {
-        damage = userInputDamage;
-    }
-
-    /**
-     * Getter method that returns the damage.
-     * @return Returns the damage done by the Pokemon.
-     */
-    public int getDamage() {
-        return damage;
-    }
-
-    /**
      * Draws 7 cards from the deck and puts them into the player's hand.
      */
     public void drawHand() {

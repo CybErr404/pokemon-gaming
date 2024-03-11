@@ -22,6 +22,7 @@ public class ProfessorsResearch extends Trainer {
      * the instructions associated with the Professor's Research card.
      * @param gameState - PokemonCardGame object that will be cleared and redrawn.
      */
+    @Override
     public void playable(PokemonCardGame gameState) {
         gameState.getHand().clear();
         drawHand();

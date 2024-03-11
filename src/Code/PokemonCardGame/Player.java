@@ -2,6 +2,7 @@ package Code.PokemonCardGame;
 
 //Imports the ArrayList class for all Card items a player would have in a Pokemon game.
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * @author Mia Watts
@@ -27,31 +28,82 @@ public class Player {
         prizePile = new ArrayList<>();
         bench = new ArrayList<>();
         discardPile = new ArrayList<>();
+    }
 
-        //Loop that adds Pokemon, Energy, and Trainer cards to the deck until the deck size
-        //of 60 is reached.
-        for (int i = 0; i < 60; i++) {
-            deck.add(new Pokemon());
+    /**
+     * Builds the deck with Pokemon, Trainer cards, and Energy cards.
+     *
+     * @return
+     */
+    public ArrayList<Card> buildDeck(){
+        deck.clear();
+        PokemonInheritance[] pokemon = {new Pikachu(), new Bulbasaur(), new Fennekin(), new Chimchar()};
+        Trainer[] trainer = {new NestBall(), new ProfessorsResearch(), new TrainerLillie(), new TrainerLeon()};
+
+        //Adds Pokemon cards.
+        Collections.addAll(deck, pokemon);
+
+        //Adds Trainer cards.
+        Collections.addAll(deck, trainer);
+
+        //Adds 20 generic Energy cards.
+        for(int i = 0; i < 20; i++){
             deck.add(new Energy());
+        }
+
+        //Adds 16 generic Trainer cards.
+        for(int i = 0; i < 16; i++){
             deck.add(new Trainer());
-            deck.add(new RareCandy());
         }
 
-        //Loop that adds Pokemon, Energy, and Trainer cards to the player's hand
-        //until the hand size of 7 is reached.
-        for(int i = 0; i < 7; i++) {
-            hand.add(new Energy());
-            hand.add(new Pokemon());
-            hand.add(new Trainer());
+        //Adds 16 generic Pokemon cards.
+        for(int i = 0; i < 16; i++){
+            deck.add(new Pokemon());
         }
+        return null;
+    }
 
-        //Loop that adds Pokemon, Energy, Trainer, and Rare Candy cards to the
-        //player's prize pile.
+    public void buildHand() {
+        PokemonInheritance[] pokemon = {new Pikachu(), new Bulbasaur(), new Fennekin(), new Chimchar()};
+        for(int i = 0; i < hand.size(); i++) {
+            hand.add(pokemon[i]);
+        }
+        hand.add(new TrainerLillie());
+        hand.add(new TrainerLeon());
+        hand.add(new ProfessorsResearch());
+    }
+
+    public ArrayList<Card> buildSimpleHand1() {
+        hand.clear();
+        hand.add(new Fennekin());
+        hand.add(new TrainerLillie());
+        hand.add(new TrainerLeon());
+        hand.add(new ProfessorsResearch());
+        hand.add(new Pokemon());
+        hand.add(new Energy());
+        hand.add(new Trainer());
+        return null;
+    }
+
+    public ArrayList<Card> buildSimpleHand2() {
+        hand.clear();
+        hand.add(new Bulbasaur());
+        hand.add(new TrainerLillie());
+        hand.add(new TrainerLeon());
+        hand.add(new ProfessorsResearch());
+        hand.add(new Pokemon());
+        hand.add(new Energy());
+        hand.add(new Trainer());
+        return null;
+    }
+
+    public ArrayList<Card> buildPrizePile() {
         for(int i = 0; i < 6; i++) {
             prizePile.add(new Pokemon());
-            prizePile.add(new Trainer());
             prizePile.add(new Energy());
+            prizePile.add(new Trainer());
         }
+        return null;
     }
 
     /**
